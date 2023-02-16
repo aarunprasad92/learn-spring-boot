@@ -12,3 +12,12 @@ production ready
 logging
 configurations for envs - profiles, configuration properties
 monitoring (spring boot actuator)
+
+spring boot starter projects
+-----------------------------
+- convenient dependency descriptors for different features
+All dependencies needed for building REST api and writing tests - spring-boot-starter-web, spring-boot-starter-test build dependencies
+- spring boot provides variety of starter projects
+    - eg. to talk to db using JPA - spring boot starter data JPA
+    - to talk to db using JDBC - spring boot starter JDBC
+    - secure the web application of REST api - spring boot starter security
