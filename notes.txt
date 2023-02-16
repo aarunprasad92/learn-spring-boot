@@ -21,3 +21,11 @@ All dependencies needed for building REST api and writing tests - spring-boot-st
     - eg. to talk to db using JPA - spring boot starter data JPA
     - to talk to db using JDBC - spring boot starter JDBC
     - secure the web application of REST api - spring boot starter security
+
+spring boot auto configuration
+-------------------------------
+- Automated configuration for the app
+- decided based on
+    which frameworks are in the classpath
+    existing configurations (annotations, etc)
+- default configurations available in spring boot autoconfiguration jar
