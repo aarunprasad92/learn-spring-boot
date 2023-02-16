@@ -41,3 +41,9 @@ Prod readiness
 Managing app configs using profiles
 - environment specific configs using profiles
 - if no profiles configured, default configs from application.properties is used
+
+
+Spring boot embedded servers
+-----------------------------
+spring boot starter web - contains the web server dependency tomcat because of which we can directly run the jar file using java. no need to separately download web server and stert it.
+
