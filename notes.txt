@@ -47,3 +47,12 @@ Spring boot embedded servers
 -----------------------------
 spring boot starter web - contains the web server dependency tomcat because of which we can directly run the jar file using java. no need to separately download web server and stert it.
 
+Monitor apps using spring boot actuator
+---------------------------------------
+- monitor and manage app in prod
+- provides a number of endpoints
+    beans - list of spring beans in app
+    health - app health info
+    metrics - app metrics
+    mappings - details of request mappings
+
