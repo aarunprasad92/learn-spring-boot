@@ -29,3 +29,9 @@ spring boot auto configuration
     which frameworks are in the classpath
     existing configurations (annotations, etc)
 - default configurations available in spring boot autoconfiguration jar
+
+spring boot dev tools
+---------------------
+increase dev productivity
+no restart for code change
+
