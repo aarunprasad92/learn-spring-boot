@@ -56,3 +56,13 @@ Monitor apps using spring boot actuator
     metrics - app metrics
     mappings - details of request mappings
 
+
+Spring framework vs Spring MVC vs Spring boot
+-----------------------------------------------
+framework - DI - @component, @autowiring, @componentScan etc
+MVC - simplify building web applications/ REST api
+    @controller, @requestmapping, @restcontroller etc
+boot - build prod ready apps quickly
+      starter projects, auto configuration, enable NFRs (actuator, embedded server, logging, error handling, profiles, configuration properties)
+
+
