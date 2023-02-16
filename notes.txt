@@ -35,3 +35,9 @@ spring boot dev tools
 increase dev productivity
 no restart for code change
 
+
+Prod readiness
+---------------
+Managing app configs using profiles
+- environment specific configs using profiles
+- if no profiles configured, default configs from application.properties is used
