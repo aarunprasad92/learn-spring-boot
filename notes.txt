@@ -1,0 +1,14 @@
+- Spring boot helps in building prod ready apps quickly using
+
+build quickly
+-------------
+spring initialzr - creation of proj
+spring boot starter projects - quickly define dependencies for the proj
+spring boot auto configuration - automatically provide configuration based on dependencies in class path
+spring dev tools - application changes without manually restart the server
+
+production ready
+-----------------
+logging
+configurations for envs - profiles, configuration properties
+monitoring (spring boot actuator)
