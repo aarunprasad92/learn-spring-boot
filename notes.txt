@@ -65,4 +65,13 @@ MVC - simplify building web applications/ REST api
 boot - build prod ready apps quickly
       starter projects, auto configuration, enable NFRs (actuator, embedded server, logging, error handling, profiles, configuration properties)
 
+Spring MVC Front controller - Dispatcher Servlet
+----------------------------
+When a request is made,
+
+- Identifies correct controller method
+- Executes controller method
+- Identifies correct view - Using view resolver
+- Executes view
+
 
