@@ -75,3 +75,9 @@ When a request is made,
 - Executes view
 
 
+Request vs Model vs Session
+-----------------------------
+Scope of values added in Model is within that request.
+To get a value across the request, use @SessionAttribute annotation
+
+
