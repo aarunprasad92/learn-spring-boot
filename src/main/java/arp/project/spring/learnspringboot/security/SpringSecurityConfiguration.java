@@ -15,15 +15,23 @@ public class SpringSecurityConfiguration {
     //LDAP or Database for storing credentials
     @Bean
     public InMemoryUserDetailsManager createUserDetailsManager() {
+
+        UserDetails userDetails1 = createNewUser("arun", "dummy");
+        UserDetails userDetails2 = createNewUser("prasad", "dummy1");
+
+        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
+    }
+
+    private UserDetails createNewUser(String username, String password) {
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
+
         UserDetails userDetails = User.builder()
                 .passwordEncoder(passwordEncoder)
-                .username("arun")
-                .password("dummy")
+                .username(username)
+                .password(password)
                 .roles("USER", "ADMIN")
                 .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
+        return userDetails;
     }
 
     @Bean
