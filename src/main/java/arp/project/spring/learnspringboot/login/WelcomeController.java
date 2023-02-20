@@ -19,7 +19,7 @@ public class WelcomeController {
         model.put("name", getLoggedInUserName());
         return "welcome";
     }
-    
+
     private String getLoggedInUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
