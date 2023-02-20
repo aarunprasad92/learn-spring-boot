@@ -4,20 +4,19 @@
     <link href="webjars/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet"/>
     <title>List Todo Page</title>
 </head>
-<body>
-<div>Welcome ${name}!</div>
-<hr>
-<h1>Your Todo list</h1>
-<table>
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>description</th>
-        <th>target date</th>
-        <th> is done?</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="container">
+    <body>
+    <h1>Your Todo list</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>description</th>
+            <th>target date</th>
+            <th> is done?</th>
+        </tr>
+        </thead>
+        <tbody>
         <c:forEach items="${todoList}" var="todo">
             <tr>
                 <td>${todo.id}</td>
@@ -26,9 +25,10 @@
                 <td>${todo.done}</td>
             </tr>
         </c:forEach>
-    </tbody>
-</table>
-<script src="webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
-<script src="webjars/jquery/3.6.3/jquery.min.js"></script>
-</body>
+        </tbody>
+    </table>
+    <script src="webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+    <script src="webjars/jquery/3.6.3/jquery.min.js"></script>
+    </body>
+</div>
 </html>
