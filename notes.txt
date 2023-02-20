@@ -97,4 +97,8 @@ steps:
 - Add validations to bean
 - Display validation errors in the view
 
+Spring security
+----------------
+Very useful for authentication, login, logout
+
 
