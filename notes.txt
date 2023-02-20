@@ -80,4 +80,12 @@ Request vs Model vs Session
 Scope of values added in Model is within that request.
 To get a value across the request, use @SessionAttribute annotation
 
+Bootstrap and jquery files
+---------------------------
+update the web jar dependencies and get the js and css links from the jars
+
+/META-INF/resources/webjars/bootstrap/5.2.3/css/bootstrap.min.css
+/META-INF/resources/webjars/bootstrap/5.2.3/js/bootstrap.min.js
+/META-INF/resources/webjars/jquery/3.6.3/jquery.min.js
+
 

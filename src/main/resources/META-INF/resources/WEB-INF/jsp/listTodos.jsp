@@ -1,7 +1,8 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-    <title>Welcome Page</title>
+    <link href="webjars/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>List Todo Page</title>
 </head>
 <body>
 <div>Welcome ${name}!</div>
@@ -27,5 +28,7 @@
         </c:forEach>
     </tbody>
 </table>
+<script src="webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.6.3/jquery.min.js"></script>
 </body>
 </html>
