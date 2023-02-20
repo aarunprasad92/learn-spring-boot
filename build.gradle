@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
 	implementation 'org.eclipse.jetty:glassfish-jstl'
+	implementation 'org.webjars:bootstrap:5.2.3'
+	implementation 'org.webjars:jquery:3.6.3'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -4,8 +4,9 @@
     <title>Welcome Page</title>
 </head>
 <body>
-<div>Welcome to the home page ${name}!</div>
-<div>Your Todo list</div>
+<div>Welcome ${name}!</div>
+<hr>
+<h1>Your Todo list</h1>
 <table>
     <thead>
     <tr>
