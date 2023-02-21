@@ -101,4 +101,11 @@ Spring security
 ----------------
 Very useful for authentication, login, logout
 
+H2
+---
+- Got the H2 in memory db connection string from the logs -> Added connection conn0: url=jdbc:h2:mem:ee8baa6b-6325-4972-b636-2b7e1b81a5fe user=SA
+- h2 console available in -> localhost:port/h2-console
+- h2 console was not opening when spring security related code was present. It was loading after the security related code and dependency was removed.
+
+
 
