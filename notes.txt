@@ -114,4 +114,9 @@ Spring JDBC
 - jpa - just map entity to table
 - spring data jpa - make jpa even more simple
 
+Hibernate vs JPA
+-----------------
+- JPA defines the specifications. It is an API
+- Hibernate is an implementation of JPA
+
 
