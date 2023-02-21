@@ -111,5 +111,6 @@ Spring JDBC
 ------------
 - jdbc - lot of sql queries and lot of java code
 - spring jdbc - lot of sql queries but lesser java code
+- spring jpa - just map entity to table
 
 
