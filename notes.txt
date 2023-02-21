@@ -107,5 +107,9 @@ H2
 - h2 console available in -> localhost:port/h2-console
 - h2 console was not opening when spring security related code was present. It was loading after the security related code and dependency was removed.
 
+Spring JDBC
+------------
+- jdbc - lot of sql queries and lot of java code
+- spring jdbc - lot of sql queries but lesser java code
 
 
