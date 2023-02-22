@@ -6,12 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MyMathTest {
 
+    private MyMath myMath = new MyMath();
     @Test
-    void calculateSum() {
-        int[] numbers = {1, 2, 3};
-        MyMath myMath = new MyMath();
-        int result = myMath.calculateSum(numbers);
-        int expectedResult = 6;
-        assertEquals(expectedResult, result);
+    void calculateSum_ThreeMemberArray() {
+        assertEquals(6, myMath.calculateSum(new int[]{1, 2, 3}));
+    }
+
+    @Test
+    void calculateSum_EmptyArray() {
+        assertEquals(0, myMath.calculateSum(new int[]{}));
     }
 }
