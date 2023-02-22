@@ -1,8 +1,6 @@
 package arp.project.spring.learnspringboot.todo;
 
 import jakarta.validation.Valid;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -46,7 +44,9 @@ public class TodoController {
             return "todo";
         }
         String username = getLoggedInUserName();
-        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
+        todo.setDone(false);
+        todo.setUsername(username);
+        todoService.addTodo(todo);
         return "redirect:list-todos";
     }
 

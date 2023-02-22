@@ -123,4 +123,6 @@ Hibernate vs JPA
 - JPA defines the specifications. It is an API
 - Hibernate is an implementation of JPA
 
+- A repository allows perform operations on entities
+
 
