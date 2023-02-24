@@ -1,0 +1,17 @@
+- Need to create a jenkins server
+    - Create an EC2 instance in AWS to run jenkins server
+    - install java and jenkins in the AWS instance
+commands in aws linux instance
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins
+service jenkins status
+amazon-linux-extras install epel
+amazon-linux-extras install java-openjdk11
+service jenkins start
+service jenkins status
+
+connect using public ip/dns in the port 8080
+http://ec2-15-206-84-148.ap-south-1.compute.amazonaws.com:8080/
+using admin password in 'less /var/lib/jenkins/secrets/initialAdminPassword'

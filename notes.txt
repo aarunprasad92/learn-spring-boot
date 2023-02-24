@@ -126,3 +126,11 @@ Hibernate vs JPA
 - A repository allows perform operations on entities
 
 
+REST
+------
+Representational State Transfer - Architectural style for web
+Key abstraction - Resource
+Resource has a URI
+Can perform actions on the resources - get, add, updte, delete
+
+
