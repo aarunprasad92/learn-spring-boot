@@ -138,4 +138,17 @@ jackson is used internally by spring boot starter web for mapping bean to json
 path variable/params
 - url can have some values as part of it - path variables/param
 
+PUT - update an existing resource
+PATCH - update part of a resource
+
+Response status for REST api
+return correct status for api
+- 404 - resource not found
+- 500 - server exception
+- 400 - bad request validation error
+- 401 - unauthorized request
+- 200 - success
+- 201 - Created - used in POST
+- 204 - No content - successfully updated
+
 
