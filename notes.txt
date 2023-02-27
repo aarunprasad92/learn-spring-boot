@@ -133,4 +133,6 @@ Key abstraction - Resource
 Resource has a URI
 Can perform actions on the resources - get, add, updte, delete
 
+jackson is used internally by spring boot starter web for mapping bean to json
+
 
