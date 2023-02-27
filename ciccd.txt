@@ -14,7 +14,7 @@ service jenkins status
 
 connect using public ip/dns in the port 8080
 http://ec2-15-206-84-148.ap-south-1.compute.amazonaws.com:8080/
-using admin password in 'less /var/lib/jenkins/secrets/initialAdminPassword'
+using admin password in 'less /var/lib/jenkins/secrets/initialAdminPassword' - f7229ec4efcd47e397e7633b21d9aab5
 
 Integrate github with jenkins - to pull code for building
 - Install git on jenkins instance -> yum install git
@@ -23,3 +23,8 @@ Integrate github with jenkins - to pull code for building
 
 pull the code from github
 - add a new job > configure the git repository and branch and run the job. Repo gets pulled and copied to /var/lib/jenkins/workspace/job
+
+integrate gradle with jenkins
+- install gradle in jenkins server
+- add gradle plugin in jenkins ui -> manage jenkins -> gradle
+- configure gradle in jenkins ui -> global tool configuration
