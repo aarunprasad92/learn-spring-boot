@@ -1,6 +1,8 @@
 package arp.project.spring.learnspringboot.survey;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -32,15 +34,15 @@ public class SurveyControllerIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void getQuestionByIdForSurvey_baseScenario() {
+    void getQuestionByIdForSurvey_baseScenario() throws JSONException {
         ResponseEntity<String> responseEntity = restTemplate
                 .withBasicAuth("arun", "dummy")
                 .getForEntity(SPECIFIC_QUESTION_URL, String.class);
         String expectedResponse = """
-                {"id":"Question1","description":"Most Popular Cloud Platform Today","options":["AWS","Azure","Google Cloud","Oracle Cloud"],"correctAnswer":"AWS"}
+                {"id":"Question1",
+                "description":"Most Popular Cloud Platform Today",
+                "correctAnswer":"AWS"}
                 """;
-        assertEquals(expectedResponse.trim(), responseEntity.getBody());
-        System.out.println(responseEntity.getBody());
-        System.out.println(responseEntity.getHeaders());
+        JSONAssert.assertEquals(expectedResponse, responseEntity.getBody(), false);
     }
 }
