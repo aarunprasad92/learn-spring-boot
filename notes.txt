@@ -161,4 +161,6 @@ Integration test
 - launch the entire spring context and fire request and check the api response
 - the spring context is loaded in test by using the annotation - @SpringBootTest
 
+json assert - used to compare json strings
+
 
