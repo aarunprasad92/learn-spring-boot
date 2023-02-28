@@ -2,6 +2,8 @@ package arp.project.spring.learnspringboot.survey;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -66,6 +68,13 @@ public class SurveyService {
 
     public void addNewSurveyQuestion(String surveyId, Question question) {
         List<Question> surveyQuestions = retrieveSurveyQuestions(surveyId);
+        question.setId(getRandomId());
         surveyQuestions.add(question);
+    }
+
+    private static String getRandomId() {
+        SecureRandom secureRandom = new SecureRandom();
+        String randomId = new BigInteger(32, secureRandom).toString();
+        return randomId;
     }
 }
