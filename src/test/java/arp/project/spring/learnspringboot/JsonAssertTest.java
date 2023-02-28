@@ -8,12 +8,14 @@ public class JsonAssertTest {
     @Test
     void jsonAssertLEarningBasics() throws JSONException {
         String expectedResponse = """
-                {"id":"Question1","description":"Most Popular Cloud Platform Today","options":["AWS","Azure","Google Cloud","Oracle Cloud"],"correctAnswer":"AWS"}
+                {"id":"Question1",
+                "description":"Most Popular Cloud Platform Today",
+                "correctAnswer":"AWS"}
                 """;
         String actualResponse = """
                   {"id":"Question1", "description":"Most Popular Cloud Platform Today","options":["AWS","Azure","Google Cloud","Oracle Cloud"],"correctAnswer":"AWS"}
                 """;
 
-        JSONAssert.assertEquals(expectedResponse, actualResponse, true);
+        JSONAssert.assertEquals(expectedResponse, actualResponse, false);
     }
 }
