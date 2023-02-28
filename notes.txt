@@ -153,4 +153,6 @@ return correct status for api
 
 Talend api tester - web app to test apis. Similar to postman.
 
+POST - best practise is to return the created resource location url in the location header with status code 201
+
 

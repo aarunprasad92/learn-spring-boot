@@ -66,10 +66,11 @@ public class SurveyService {
         return optionalQuestion.get();
     }
 
-    public void addNewSurveyQuestion(String surveyId, Question question) {
+    public String addNewSurveyQuestion(String surveyId, Question question) {
         List<Question> surveyQuestions = retrieveSurveyQuestions(surveyId);
         question.setId(getRandomId());
         surveyQuestions.add(question);
+        return question.getId();
     }
 
     private static String getRandomId() {
