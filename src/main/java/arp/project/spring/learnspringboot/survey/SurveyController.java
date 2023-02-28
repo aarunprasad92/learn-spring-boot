@@ -30,4 +30,22 @@ public class SurveyController {
         }
         return survey;
     }
+
+    @RequestMapping("/surveys/{surveyId}/questions")
+    public List<Question> getQuestionsForSurvey(@PathVariable String surveyId) {
+        List<Question> surveyQuestions = surveyService.retrieveSurveyQuestions(surveyId);
+        if(surveyQuestions == null || surveyQuestions.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return surveyQuestions;
+    }
+
+    @RequestMapping("/surveys/{surveyId}/questions/{questionId}")
+    public Question getQuestionByIdForSurvey(@PathVariable String surveyId, @PathVariable String questionId) {
+        Question question = surveyService.retrieveQuestionByIdForSurvey(surveyId, questionId);
+        if(question == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return question;
+    }
 }

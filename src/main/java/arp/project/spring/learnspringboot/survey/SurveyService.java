@@ -2,10 +2,7 @@ package arp.project.spring.learnspringboot.survey;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Service
@@ -44,5 +41,26 @@ public class SurveyService {
             return null;
 
         return optionalSurvey.get();
+    }
+
+    public List<Question> retrieveSurveyQuestions(String surveyId) {
+        Survey survey = retrieveSurvey(surveyId);
+        if(survey == null)
+            return null;
+
+        return survey.getQuestions();
+    }
+
+    public Question retrieveQuestionByIdForSurvey(String surveyId, String questionId) {
+        List<Question> surveyQuestions = retrieveSurveyQuestions(surveyId);
+        if (surveyQuestions == null || surveyQuestions.isEmpty())
+            return null;
+
+        Predicate<? super Question> predicate = question -> question.getId().equalsIgnoreCase(questionId);
+        Optional<Question> optionalQuestion = surveyQuestions.stream().filter(predicate).findFirst();
+        if(optionalQuestion.isEmpty())
+            return null;
+
+        return optionalQuestion.get();
     }
 }
