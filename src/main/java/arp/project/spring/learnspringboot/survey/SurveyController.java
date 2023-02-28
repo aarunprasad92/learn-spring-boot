@@ -59,4 +59,10 @@ public class SurveyController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @RequestMapping(value = "/surveys/{surveyId}/questions/{questionId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteSurveyQuestion(@PathVariable String surveyId, @PathVariable String questionId) {
+        surveyService.deleteSurveyQuestion(surveyId, questionId);
+        return ResponseEntity.noContent().build();
+    }
 }
