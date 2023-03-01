@@ -1,6 +1,8 @@
 package arp.project.spring.learnspringboot.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -73,8 +75,7 @@ public class TodoController {
     }
 
     private String getLoggedInUserName() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        return authentication.getName();
-        return "arun";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 }
