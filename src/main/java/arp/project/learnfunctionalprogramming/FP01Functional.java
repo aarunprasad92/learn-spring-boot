@@ -19,6 +19,8 @@ public class FP01Functional {
     }
 
     private static void printEvenNumbersInListFunctional(List<Integer> numbers) {
-        numbers.stream().filter(FP01Functional::isEven).forEach(System.out::println);
+        numbers.stream()
+                .filter(number -> number%2 == 0)
+                .forEach(System.out::println);
     }
 }
