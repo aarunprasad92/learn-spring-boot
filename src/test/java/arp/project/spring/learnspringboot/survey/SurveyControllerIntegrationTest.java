@@ -6,15 +6,16 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SurveyControllerIntegrationTest {
     private static String SPECIFIC_QUESTION_URL = "/surveys/Survey1/questions/Question1";
+    private static String QUESTIONS_URL = "/surveys/Survey1/questions";
+
 
     // used to fire the api request
     @Autowired
@@ -39,7 +40,6 @@ public class SurveyControllerIntegrationTest {
     @Test
     void getQuestionByIdForSurvey_baseScenario() throws JSONException {
         ResponseEntity<String> responseEntity = restTemplate
-                .withBasicAuth("arun", "dummy")
                 .getForEntity(SPECIFIC_QUESTION_URL, String.class);
         String expectedResponse = """
                 {"id":"Question1",
@@ -54,5 +54,30 @@ public class SurveyControllerIntegrationTest {
 
         //check actual response body
         JSONAssert.assertEquals(expectedResponse, responseEntity.getBody(), false);
+    }
+
+    @Test
+    public void addNewSurveyQuestion_baseScenario() {
+        String body = """
+            {
+                "description": "Most Popular Programming language Today",
+                "options":[
+                    "Java",
+                    "Python",
+                    "Scala",
+                    "Kotlin"
+                ],
+                "correctAnswer": "Java"
+            }
+            """;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        HttpEntity<String> httpEntity = new HttpEntity<String>(body, headers);
+        ResponseEntity<String> responseEntity =
+                restTemplate.exchange(QUESTIONS_URL, HttpMethod.POST, httpEntity, String.class);
+
+        assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+        assertTrue(responseEntity.getHeaders().getLocation().toString().contains("/surveys/Survey1/questions"));
     }
 }
