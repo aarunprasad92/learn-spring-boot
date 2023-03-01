@@ -78,6 +78,10 @@ public class SurveyControllerIntegrationTest {
                 restTemplate.exchange(QUESTIONS_URL, HttpMethod.POST, httpEntity, String.class);
 
         assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        assertTrue(responseEntity.getHeaders().getLocation().toString().contains("/surveys/Survey1/questions"));
+        String locationHeader = responseEntity.getHeaders().getLocation().toString();
+        assertTrue(locationHeader.contains("/surveys/Survey1/questions"));
+
+        //Delete the created resource
+        restTemplate.delete(locationHeader);
     }
 }
