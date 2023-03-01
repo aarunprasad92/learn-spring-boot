@@ -165,4 +165,8 @@ json assert - used to compare json strings
 
 order of test execution is random. Need to make sure one test run does not affect other test.
 
+Spring boot Mock MVC unit test
+-------------------------------
+- Loads the spring context with only the dependent beans - @WebMvcTest
+
 
