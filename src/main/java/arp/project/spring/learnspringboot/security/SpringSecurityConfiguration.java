@@ -48,7 +48,7 @@ public class SpringSecurityConfiguration {
         http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
 
         //for unauthorized requests, show form login page
-        http.formLogin(Customizer.withDefaults());
+        http.httpBasic(Customizer.withDefaults());
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
