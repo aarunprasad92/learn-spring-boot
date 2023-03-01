@@ -9,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Base64;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -39,8 +41,12 @@ public class SurveyControllerIntegrationTest {
 
     @Test
     void getQuestionByIdForSurvey_baseScenario() throws JSONException {
-        ResponseEntity<String> responseEntity = restTemplate
-                .getForEntity(SPECIFIC_QUESTION_URL, String.class);
+        HttpHeaders headers = createHttpContentTypeAndAuthorizationHeaders();
+
+        HttpEntity<String> httpEntity = new HttpEntity<String>(null, headers);
+        ResponseEntity<String> responseEntity =
+                restTemplate.exchange(SPECIFIC_QUESTION_URL, HttpMethod.GET, httpEntity, String.class);
+
         String expectedResponse = """
                 {"id":"Question1",
                 "description":"Most Popular Cloud Platform Today",
@@ -71,8 +77,8 @@ public class SurveyControllerIntegrationTest {
             }
             """;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
+        HttpHeaders headers = createHttpContentTypeAndAuthorizationHeaders();
+
         HttpEntity<String> httpEntity = new HttpEntity<String>(body, headers);
         ResponseEntity<String> responseEntity =
                 restTemplate.exchange(QUESTIONS_URL, HttpMethod.POST, httpEntity, String.class);
@@ -82,6 +88,21 @@ public class SurveyControllerIntegrationTest {
         assertTrue(locationHeader.contains("/surveys/Survey1/questions"));
 
         //Delete the created resource
-        restTemplate.delete(locationHeader);
+        ResponseEntity<String> responseEntityDelete =
+                restTemplate.exchange(locationHeader, HttpMethod.DELETE, httpEntity, String.class);
+        assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+    }
+
+    private HttpHeaders createHttpContentTypeAndAuthorizationHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Authorization", "Basic " + performBasicAuthEncoding("arun", "dummy"));
+        return headers;
+    }
+
+    String performBasicAuthEncoding(String username, String password) {
+        String combined = username + ":" + password;
+        byte[] encodedBytes = Base64.getEncoder().encode(combined.getBytes());
+        return new String(encodedBytes);
     }
 }
