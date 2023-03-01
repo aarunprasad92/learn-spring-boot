@@ -178,4 +178,9 @@ lamba functions, streams, filters
 
 how FP is different ?
 
+Optional classes
+-----------------
+- to solve null pointer
+
+
 
