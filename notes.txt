@@ -169,4 +169,13 @@ Spring boot Mock MVC unit test
 -------------------------------
 - Loads the spring context with only the dependent beans - @WebMvcTest
 
+Functional programming in java
+--------------------------------
+- first introduced in java 8
+lamba functions, streams, filters
+
+- it is a paradigm shift - fundamental change in approach
+
+how FP is different ?
+
 
