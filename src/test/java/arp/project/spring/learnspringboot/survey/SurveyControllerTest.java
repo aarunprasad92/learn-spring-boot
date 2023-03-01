@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -15,6 +16,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = SurveyController.class)
@@ -26,6 +29,7 @@ class SurveyControllerTest {
     private MockMvc mockMvc;
 
     private static String SPECIFIC_QUESTION_URL = "http://localhost:8081/surveys/Survey1/questions/Question1";
+    private static String QUESTIONS_URL = "http://localhost:8081/surveys/Survey1/questions";
 
     @Test
     public void getQuestionByIdForSurvey_404Scenario() throws Exception {
@@ -52,7 +56,58 @@ class SurveyControllerTest {
                     "correctAnswer":"AWS"
                 }
                 """;
-        assertEquals(200, mvcResult.getResponse().getStatus());
-        JSONAssert.assertEquals(expectedResponse, mvcResult.getResponse().getContentAsString(), false);
+        MockHttpServletResponse response = mvcResult.getResponse();
+        assertEquals(200, response.getStatus());
+        JSONAssert.assertEquals(expectedResponse, response.getContentAsString(), false);
     }
+
+    @Test
+    public void addNewSurveyQuestion_baseScenario() throws Exception {
+        String requestBody = """
+            {
+                "description": "Most Popular Programming language Today",
+                "options":[
+                    "Java",
+                    "Python",
+                    "Scala",
+                    "Kotlin"
+                ],
+                "correctAnswer": "Java"
+            }
+            """;
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post(QUESTIONS_URL)
+                .accept(MediaType.APPLICATION_JSON).
+                content(requestBody)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        when(surveyService.addNewSurveyQuestion(anyString(), any())).thenReturn("newQuestionId");
+
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+
+        assertEquals(201, response.getStatus());
+        String expectedLocationHeader = "/surveys/Survey1/questions/newQuestionId";
+        assertTrue(response.getHeader("Location").contains(expectedLocationHeader));
+
+
+//        Question newQuestion = new Question("Question1",
+//                "Most Popular Language", Arrays.asList(
+//                "Java", "Scala", "Ruby", "Python"), "Python");
+//
+    }
+
+    /*
+      @RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.POST)
+    public ResponseEntity<Object> addNewSurveyQuestion(@PathVariable String surveyId, @RequestBody Question question) {
+        String questionId = surveyService.addNewSurveyQuestion(surveyId, question);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{questionId}")
+                .buildAndExpand(questionId)
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+     */
 }
