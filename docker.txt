@@ -1,0 +1,9 @@
+- Need to find a suitable base image for building and running spring boot/gradle/java application
+
+container port mapping
+-----------------------
+docker run -p 8080:8080 <imageId> => local host incoming request port to container port
+
+specifying working directory in Dockerfile
+--------------------------------------------
+WORKDIR /usr/app -> Any following command will be executed relative to this path in the container
