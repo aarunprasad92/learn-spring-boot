@@ -1,21 +1,26 @@
-Event streaming paltform - Apache kafka is an event streaming platform
+Event streaming paltform
+-------------------------
 - Producers and consumers subscribe to a stream of records
 - Store stream of events
 - Analyze and process events as they occur
 
 Apache kafka
+--------------
+Apache kafka is an event streaming platform
 - Stores events based on retention time. Events are immutable
 - Consumers responsibility to keep track of consumed messages
 - Any consumer can access a message from the broker
 - It is a distributed streaming system - handles load well
 
 Kafka use cases
+----------------
 - sending notifications
 - alerts
 - recommendations
 - Tracking
 
 Kafka terminologies and Client APIs
+-------------------------------------
 - Kafka cluster - consists of multiple kafka brokers
 - Zookeeper - Manage multiple brokers, keeps track of the brokers health and manage the cluster
 - Kafka clients interact with the brokers
@@ -28,12 +33,14 @@ Kafka terminologies and Client APIs
         - Streams API - take data from kafka and perform transformations on it and put it back to kafka
 
 Kafka files
+------------
 - bin folder - kafka-server-start.sh, zookeeper-server-start.sh, kafka-console-consumer.sh, kafka-console-producer.sh
 - for windows there is a windows folder
 - config folder
     - server.properties - information about the broker, connection details for the zookeeper
 
 Kafka Topics and Partitions
+----------------------------
 - Kafka topic - an entity in kafka with a name. Like a table in a db
     - topic resides inside a kafka broker
     - kafka clients use the topic name to produce and consume messages
@@ -52,6 +59,7 @@ Kafka Topics and Partitions
     - Producer has the control to which partition the message goes into
 
 Setting up kafka in local
+---------------------------
 - First start the zookeeper
 - Then start the kafka broker -> the kafka broker registers itself to the zookeeper for it to be managed by the zookeeper
 - Zookeeper plays a vital role if there are multiple brokers
@@ -72,6 +80,7 @@ Start up the Kafka Broker
 
 
 Create topic, produce, consume messages in CLI
+------------------------------------------------
 - create the topic
     ./kafka-topics.sh --create --topic test-topic --replication-factor 1 --partitions 4 --bootstrap-server localhost:9092
 - create the producer (without key)
@@ -93,6 +102,7 @@ consume and print the key
 
 
 Consumer offsets
+------------------
 - message will have unique id called offset
 - Consumers have three options to read messages - from beginning, latest, specific offset (can be done only programmatically)
 - The consumer while reading the message, writes the offset of the read message to an internal topic called __consumer_offsets.
@@ -121,5 +131,11 @@ java.io.IOException: Unreasonable length = 308375649
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+Consumer Groups
+----------------
+
 
 
