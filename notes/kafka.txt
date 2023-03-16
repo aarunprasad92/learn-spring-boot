@@ -161,4 +161,19 @@ Retention policy
 - policy is configured using the property -> log.retention.hours in server.properties
 - default retention period is 168 hours (7 days)
 
+Kafka as a distributed streaming system
+----------------------------------------
+- Distributed system - multiple systems acts as a single system to the client and delivers a value.
+- Characteristics of distributed systems
+    - Availability and fault tolerance
+    - Reliable work distribution
+    - Easily scalable - adding new systems is easy
+    - Concurrency handling easily
+
+- In kafka, instead of single broker, multiple brokers can be used.
+- This will act as adistributed system and avoid single point of failure
+- each broker will send heart beat to the zookeeper
+- if a broker is down, the zookeeper knows it and will route the messages to the other working brokers without affecting the clients
+- additional brokers can be added with out the clients knowing anything
+
 
