@@ -1,0 +1,72 @@
+Event streaming paltform - Apache kafka is an event streaming platform
+- Producers and consumers subscribe to a stream of records
+- Store stream of events
+- Analyze and process events as they occur
+
+Apache kafka
+- Stores events based on retention time. Events are immutable
+- Consumers responsibility to keep track of consumed messages
+- Any consumer can access a message from the broker
+- It is a distributed streaming system - handles load well
+
+Kafka use cases
+- sending notifications
+- alerts
+- recommendations
+- Tracking
+
+Kafka terminologies and Client APIs
+- Kafka cluster - consists of multiple kafka brokers
+- Zookeeper - Manage multiple brokers, keeps track of the brokers health and manage the cluster
+- Kafka clients interact with the brokers
+- Kafka clients
+    - Kafka Producers - uses the Producer API to write data to kafka
+    - Kafka consumers - uses the Consumer API to read data from kafka
+    - Both are basic client apis
+    - Two other advanced client apis
+        - Connect API - Used by Source connector (transfer data from db/file system to kafka cluster) and Sink connector ( transfer data from kafka cluster to db/file syste)
+        - Streams API - take data from kafka and perform transformations on it and put it back to kafka
+
+Kafka files
+- bin folder - kafka-server-start.sh, zookeeper-server-start.sh, kafka-console-consumer.sh, kafka-console-producer.sh
+- for windows there is a windows folder
+- config folder
+    - server.properties - information about the broker, connection details for the zookeeper
+
+Kafka Topics and Partitions
+- Kafka topic - an entity in kafka with a name. Like a table in a db
+    - topic resides inside a kafka broker
+    - kafka clients use the topic name to produce and consume messages
+    - consumer pulls for new messages continuously by polling the topic
+    - producer produces a message up on an external trigger
+    - message resides in kafka even after being consumed till the retention periods
+- Kafka partitions - this is where the messages lives inside a topic
+    - topics can have one or more partitions. Mostly there will be multiple partitions
+    - partitions have significant effect on scalable message consumption
+    - each partition is an ordered, immutable, sequence of records
+    - each record is assigned a sequential number called offset (generated when a message is published to the kafka topic)
+    - offsets plays an important role in consumers
+    - each partition is independent of each other
+    - ordering is guaranteed only at the partition level
+    - All the records are persisted in a physical log file where kafka is installed
+    - Producer has the control to which partition the message goes into
+
+Setting up kafka in local
+- First start the zookeeper
+- Then start the kafka broker -> the kafka broker registers itself to the zookeeper for it to be managed by the zookeeper
+- Zookeeper plays a vital role if there are multiple brokers
+- before starting the kafka broker, need to do some configurations in server.properties file like port in which the broker will run, etc.
+
+setting up the kafka -> https://github.com/dilipsundarraj1/kafka-for-developers-using-spring-boot/blob/master/SetUpKafka.md
+
+Start Zookeeper and Kafka Broker
+Start up the Zookeeper.
+./zookeeper-server-start.sh ../config/zookeeper.properties
+
+Add the below properties in the server.properties
+listeners=PLAINTEXT://localhost:9092
+auto.create.topics.enable=false
+
+Start up the Kafka Broker
+./kafka-server-start.sh ../config/server.properties
+
