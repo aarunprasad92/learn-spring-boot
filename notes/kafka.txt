@@ -136,6 +136,15 @@ java.io.IOException: Unreasonable length = 308375649
 
 Consumer Groups
 ----------------
+- used for scalable message consumption
+- each different application will have a unique consumer group
+- kafka broker manages the consumer groups. It acts as the group coordinator
+- When creating a consumer instance, a group id is mentioned. Consumer instances with the same group id for a topic will be assigned partitions for polling. if there are 4 partitions and 2 consumers with the same group id, 2 partitions assigned for each one.
+- Thus spreading the load.
+- To see the consumer groups,
+./kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
 
+to start a consumer instance with a group id,
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --group <group-name>
 
 
