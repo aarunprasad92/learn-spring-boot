@@ -70,3 +70,25 @@ auto.create.topics.enable=false
 Start up the Kafka Broker
 ./kafka-server-start.sh ../config/server.properties
 
+
+Create topic, produce, consume messages in CLI
+- create the topic
+    ./kafka-topics.sh --create --topic test-topic --replication-factor 1 --partitions 4 --bootstrap-server localhost:9092
+- create the producer (without key)
+    ./kafka-console-producer.sh --broker-list localhost:9092 --topic test-topic
+- create the consumer (without key)
+    ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+
+Sending kafka messages with key and value
+- Kafka message has two properties - key and value. Key is optional
+- When a message is passed with a key by the producer, the partitioner checks the key and resolves it to a partition and puts the message in that partition.
+- When the same key is used, the message is put in the same partition. Thus ensuring order in consuming.
+- The consumer polls all the partitions of a topic parallelly. hence ordering is not maintained for messages unless a key is mentioned.
+
+produce a message with key
+./kafka-console-producer.sh --broker-list localhost:9092 --topic test-topic --property "key.separator=-" --property "parse.key=true"
+
+consume and print the key
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning -property "key.separator= - " --property "print.key=true"
+
+
