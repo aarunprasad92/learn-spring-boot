@@ -148,3 +148,17 @@ to start a consumer instance with a group id,
 ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --group <group-name>
 
 
+Commit log and retention policy
+--------------------------------
+Commit log
+- As soon as a message reaches a topic, it is written to the file system -> log.dirs=/tmp/kafka-logs. folder for each partition will be available
+- message is committed after getting logged. The consumer can read only committed messages
+- the log is written in byte format. to view the log,
+./kafka-run-class.sh kafka.tools.DumpLogSegments --deep-iteration --files /tmp/kafka-logs/test-topic-0/00000000000000000000.log
+
+Retention policy
+- how long to retain the message
+- policy is configured using the property -> log.retention.hours in server.properties
+- default retention period is 168 hours (7 days)
+
+
