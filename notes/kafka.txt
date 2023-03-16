@@ -92,3 +92,34 @@ consume and print the key
 ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning -property "key.separator= - " --property "print.key=true"
 
 
+Consumer offsets
+- message will have unique id called offset
+- Consumers have three options to read messages - from beginning, latest, specific offset (can be done only programmatically)
+- The consumer while reading the message, writes the offset of the read message to an internal topic called __consumer_offsets.
+- This acts like a bookmark and when a consumer is crashed and started again, it starts to read the message from where it left off from the partition by using the offset value in the __consumer_offsets topic
+
+- to list all the topics in the broker
+./kafka-topics.sh --bootstrap-server localhost:2181 --list
+
+getting the below error
+Error while executing topic command : Timed out waiting for a node assignment. Call: listTopics
+[2023-03-16 22:59:44,554] ERROR org.apache.kafka.common.errors.TimeoutException: Timed out waiting for a node assignment. Call: listTopics
+ (kafka.admin.TopicCommand$)
+
+ and below exception in zookeeper
+[2023-03-16 22:59:07,943] WARN Close of session 0x0 (org.apache.zookeeper.server.NIOServerCnxn)
+java.io.IOException: Unreasonable length = 308375649
+	at org.apache.jute.BinaryInputArchive.checkLength(BinaryInputArchive.java:166)
+	at org.apache.jute.BinaryInputArchive.readBuffer(BinaryInputArchive.java:127)
+	at org.apache.zookeeper.proto.ConnectRequest.deserialize(ConnectRequest.java:91)
+	at org.apache.zookeeper.server.ZooKeeperServer.processConnectRequest(ZooKeeperServer.java:1350)
+	at org.apache.zookeeper.server.NIOServerCnxn.readConnectRequest(NIOServerCnxn.java:419)
+	at org.apache.zookeeper.server.NIOServerCnxn.readPayload(NIOServerCnxn.java:180)
+	at org.apache.zookeeper.server.NIOServerCnxn.doIO(NIOServerCnxn.java:339)
+	at org.apache.zookeeper.server.NIOServerCnxnFactory$IOWorkRequest.doWork(NIOServerCnxnFactory.java:522)
+	at org.apache.zookeeper.server.WorkerService$ScheduledWorkRequest.run(WorkerService.java:154)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
