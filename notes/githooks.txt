@@ -1,0 +1,21 @@
+Commit workflow without hook
+----------------------------
+stage -> commit -> commit message -> committed
+
+Hooks in a git commit
+----------------------
+pre commit hook -> commit -> prepare commit msg hook -> commit message -> commit-msg hook -> committed -> post commit hok -> finished
+
+Git hooks usages
+-----------------
+Verify/edit commit message
+Run tests before commit or push
+run lint
+generate notifications after successful commit
+Trigger Deployment of aapplication (server side hook)
+
+Pre-commit hook
+---------------
+default hooks available in .git/hooks folder in the git repository. They are disabled by default. To enable, remove the .sample extension
+
+Local git hooks are not pushed to remote
