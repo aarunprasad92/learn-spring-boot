@@ -2,6 +2,10 @@ task installGitHook(type: Copy) {
     from new File(projectDir, 'pre-commit')
     into { new File(projectDir, '.git/hooks') }
     fileMode 0777
+
+    from new File(projectDir, 'pre-push')
+    into { new File(projectDir, '.git/hooks') }
+    fileMode 0777
 }
 
 assemble.dependsOn installGitHook
