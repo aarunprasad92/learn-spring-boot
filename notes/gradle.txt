@@ -1,0 +1,31 @@
+
+What is gradle ?
+-----------------
+Gradle -> Build automation tool
+compile, run tests, package into jar/war, docker images, deploy and run
+all these can be automated by using gradle
+
+old tools -> Ant, maven.
+Ant -> Dependency management is not there in ant, lot of xml files, steep learning curve. easy to customize
+maven -> use convention over configuration. pre defined folder structure. Has inbuild dep management.
+    - problem with customization
+gradle -> convention over configuration, customizable using DSL. Using Groovy/kotlin. No xml. Very easy to write domain specific build file.
+
+
+Why gradle ?
+------------
+- gradle also used in groovy, c++ projects
+- supports dependency management from repositories, maven central, maven local, Jcenter, File system
+- Custom dependency scope unlike maven which has fixed scope
+- incremental builds. Only compiles only changed files. faster.
+- build cache
+- supports a daemon process
+- allows use of plugins jar/war/jacoco/bootRun
+- DSL - groovy/kotlin
+- CLI utility
+- IDE support
+
+Install gradle -> brew install gradle
+
+
+
